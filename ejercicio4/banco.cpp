@@ -2,10 +2,8 @@
 
 using namespace std;
 
-// Constructor de Banco
 Banco::Banco(string titular, double saldo) : titularcuenta(titular), balance(saldo) {}
 
-// Método para depositar dinero
 void Banco::depositar(double cantidad) {
     if (cantidad > 0) {
         balance += cantidad;
@@ -13,20 +11,16 @@ void Banco::depositar(double cantidad) {
     }
 }
 
-// Obtener balance
 double Banco::getBalance() const {
     return balance;
 }
 
-// Descontar del balance
 void Banco::descontar(double cantidad) {
     balance -= cantidad;
 }
 
-// Constructor de CuentaAhorro
 CuentaAhorro::CuentaAhorro(string titular, double saldo) : Banco(titular, saldo), mostrada(0) {}
 
-// Método para mostrar datos
 void CuentaAhorro::Mostrardatos() const {
     cout << "Caja de Ahorro - Titular: " << titularcuenta << ", Balance: $" << getBalance() << "\n";
     if (++const_cast<CuentaAhorro*>(this)->mostrada > 2) {
@@ -35,7 +29,6 @@ void CuentaAhorro::Mostrardatos() const {
     }
 }
 
-// Método para retirar dinero
 void CuentaAhorro::retirar(double cantidad) {
     if (cantidad > getBalance()) {
         cout << "Fondos insuficientes en la Caja de Ahorro.\n";
@@ -45,17 +38,14 @@ void CuentaAhorro::retirar(double cantidad) {
     }
 }
 
-// Constructor de CuentaCorriente
 CuentaCorriente::CuentaCorriente(string titular, double saldo, CuentaAhorro* caja)
     : Banco(titular, saldo), caja(caja) {}
 
-// Método para mostrar datos
 void CuentaCorriente::Mostrardatos() const {
     cout << "Cuenta Corriente - Titular: " << titularcuenta << ", Balance: $" << getBalance() << "\n";
     caja->Mostrardatos();
 }
 
-// Método para retirar dinero
 void CuentaCorriente::retirar(double cantidad) {
     if (cantidad <= getBalance()) {
         descontar(cantidad);
