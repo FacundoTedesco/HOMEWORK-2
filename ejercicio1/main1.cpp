@@ -1,4 +1,4 @@
-#include "ejercicio1.h"
+#include "tiempo.h"
 #include <iostream>
 #include <stdexcept>
 
