@@ -11,7 +11,7 @@ class Estudiante {
 private:
     string nombreCompleto;
     int legajo;
-    vector<pair<string, float>> cursos; // Nombre del curso y nota
+    vector<pair<string, float>> cursos; 
 
 public:
     Estudiante(const string& nombre, int leg, const vector<pair<string, float>>& notas);
@@ -24,4 +24,4 @@ public:
     friend ostream& operator<<(ostream& os, const Estudiante& est);
 };
 
-#endif // ESTUDIANTE_H
+#endif 
